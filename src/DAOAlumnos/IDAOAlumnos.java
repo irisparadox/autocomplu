@@ -1,5 +1,5 @@
 package DAOAlumnos;
 
-public interface IDAOAlumnos {
+public interface IDAOAlumnos extends IFDAOAlumnos {
 
 }
