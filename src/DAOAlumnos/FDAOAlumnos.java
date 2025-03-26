@@ -7,31 +7,39 @@ import Dominio.Alumno;
 
 public class FDAOAlumnos implements IFDAOAlumnos {
 	private IDAOAlumnos daoAlumnos;
+	
+	@Override
 	public Alumno consultarAlumno(String idCorreo) {
 		return daoAlumnos.consultarAlumno(idCorreo);
 	}
 	
+	@Override
 	public List<Alumno> consultarAlumnos(String nombre, String apellidos) {
 		return daoAlumnos.consultarAlumnos(nombre, apellidos);
 	}
 	
-	public boolean crearAlumno(Alumno nuevoAlumno) {
+	@Override
+	public int crearAlumno(Alumno nuevoAlumno) {
 		return daoAlumnos.crearAlumno(nuevoAlumno);
 	}
 	
-	public boolean borrarAlumno(String idCorreo) {
+	@Override
+	public int borrarAlumno(String idCorreo) {
 		return daoAlumnos.borrarAlumno(idCorreo);
 	}
 	
-	public boolean existeAlumno(String idCorreo) {
+	@Override
+	public int existeAlumno(String idCorreo) {
 		return daoAlumnos.existeAlumno(idCorreo);
 	}
 	
-	public boolean editarAlumno(Alumno alumno) {
+	@Override
+	public int editarAlumno(Alumno alumno) {
 		return daoAlumnos.editarAlumno(alumno);
 	}
 	
-	public boolean consultarHorario(String idCorreo, Date horario) {
+	@Override
+	public int consultarHorario(String idCorreo, Date horario) {
 		return daoAlumnos.consultarHorario(idCorreo, horario);
 	}
 }
