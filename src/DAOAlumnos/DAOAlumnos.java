@@ -9,9 +9,33 @@ import Dominio.Alumno;
 public class DAOAlumnos implements IDAOAlumnos {
 
 	@Override
-	public Alumno consultarAlumno(String idCorreo) {
-		// TODO Auto-generated method stub
-		return null;
+	public Alumno consultarAlumno(String idCorreo) throws IllegalStateException {
+		Alumno alumno = null;
+		try {
+			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
+			String query = "SELECT * FROM alumnos WHERE idCorreo = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, idCorreo);
+			ResultSet table = statement.executeQuery();
+			
+			if(table.next()) {
+				alumno = new Alumno();
+				alumno.setIdCorreo(idCorreo);
+				alumno.setNombre(table.getString(2));
+				alumno.setApellidos(table.getString(3));
+				alumno.setTelefono(table.getString(4));
+				alumno.setContrasenha(table.getString(5));
+				alumno.setDNI(table.getString(6));
+				alumno.setNumClasesPendientes(table.getInt(7));
+			}
+			
+			table.close();
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			throw new IllegalStateException("Cannot connect to database", e);
+		}
+		return alumno;
 	}
 
 	@Override
