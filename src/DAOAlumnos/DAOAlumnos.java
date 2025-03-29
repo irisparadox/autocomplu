@@ -9,7 +9,7 @@ import Dominio.Alumno;
 public class DAOAlumnos implements IDAOAlumnos {
 
 	@Override
-	public Alumno consultarAlumno(String idCorreo) throws IllegalStateException {
+	public Alumno consultarAlumno(String idCorreo) {
 		Alumno alumno = null;
 		try {
 			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
@@ -33,7 +33,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
-			throw new IllegalStateException("Cannot connect to database", e);
+			alumno = new Alumno();
+			alumno.setIdCorreo("-2");
 		}
 		return alumno;
 	}
@@ -58,13 +59,26 @@ public class DAOAlumnos implements IDAOAlumnos {
 
 	@Override
 	public int existeAlumno(String idCorreo) {
-		
-		return 0;
+		int success;
+		try {
+			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
+			String query = "SELECT COUNT(idCorreo) FROM alumnos WHERE idCorreo = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, idCorreo);
+			ResultSet table = statement.executeQuery();
+			if(table.next()) success = table.getInt(1) > 0 ? 0x0 : 0x1;
+			table.close();
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			success = -0x1;
+		}
+		return success;
 	}
 
 	@Override
-	public int editarAlumno(Alumno alumno) throws IllegalStateException {
-		int success = -0x1;
+	public int editarAlumno(Alumno alumno) {
+		int success;
 		try {
 			//TODO setup database
 			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
@@ -77,7 +91,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
-			throw new IllegalStateException("Cannot connect to database", e);
+			success = -0x1;
 		}
 		return success;
 	}
