@@ -98,8 +98,27 @@ public class DAOAlumnos implements IDAOAlumnos {
 
 	@Override
 	public int consultarHorario(String idCorreo, Date horario) {
-		// TODO Auto-generated method stub
-		return 0;
+		int success;
+		try {
+			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
+			String query = "SELECT horario FROM clases WHERE idCorreoAlumno = ?";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet table = statement.executeQuery();
+			
+			if(table.next()) {
+				success = 0x1;
+				java.sql.Date sqlDate = table.getDate(1);
+				
+				if(horario.equals(sqlDate)) success = 0x0;
+			}
+			
+			table.close();
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			success = -0x1;
+		}
+		return success;
 	}
 
 }
