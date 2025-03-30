@@ -1,5 +1,10 @@
 package SAAlumnos;
 
+import java.util.List;
+import java.util.Date;
+
+import Dominio.Alumno;
+
 public interface IFSAAlumnos {
 	public Alumno consultarAlumno(String idCorreo);
 	public List<Alumno> consultarAlumnos(String nombre, String apellidos);

@@ -1,5 +1,5 @@
 package SAAlumnos;
 
-public interface ISAAlumnos {
+public interface ISAAlumnos extends IFSAAlumnos{
 
 }
