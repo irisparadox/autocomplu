@@ -1,5 +1,5 @@
 package SAAlumnos;
 
-public class FSAAlumnos {
-
+public class FSAAlumnos implementa IFS {
+	SAAlumnos 
 }
