@@ -47,8 +47,25 @@ public class DAOAlumnos implements IDAOAlumnos {
 
 	@Override
 	public int crearAlumno(Alumno nuevoAlumno) {
-		// TODO Auto-generated method stub
-		return 0;
+		int success;
+		try {
+			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
+			String query = "INSERT INTO alumnos VALUES(?, ?, ?, ?, ?, ?)";
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, nuevoAlumno.getIdCorreo());
+			statement.setString(2, nuevoAlumno.getNombre());
+			statement.setString(3, nuevoAlumno.getApellidos());
+			statement.setString(4, nuevoAlumno.getTelefono());
+			statement.setString(5, nuevoAlumno.getContrasenha());
+			statement.setString(6, nuevoAlumno.getDNI());
+			int rowsUpdated = statement.executeUpdate();
+			succcess = rowsUpdated > 0 ? 0x0 : 0x1;
+			statement.close();
+			connection.close();
+		} catch (SQLException e) {
+			success = -0x1;
+		}
+		return success;
 	}
 
 	@Override
@@ -103,10 +120,10 @@ public class DAOAlumnos implements IDAOAlumnos {
 			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
 			String query = "SELECT horario FROM clases WHERE idCorreoAlumno = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setString(1, idCorreo);
 			ResultSet table = statement.executeQuery();
-			
+			success = 0x1;
 			if(table.next()) {
-				success = 0x1;
 				java.sql.Date sqlDate = table.getDate(1);
 				
 				if(horario.equals(sqlDate)) success = 0x0;
