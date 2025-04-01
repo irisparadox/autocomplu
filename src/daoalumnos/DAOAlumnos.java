@@ -134,12 +134,15 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int editarAlumno(Alumno alumno) {
 		int success;
 		try {
-			//TODO setup database
 			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "UPDATE alumnos SET ...";
+			String query = "UPDATE alumnos SET nombre = ?, apellidos = ?, DNI = ?, contrasenha = ?, telefono = ? WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
-			//TODO Set attributes
-			//statement.set...(...);
+			statement.setString(1, alumno.getNombre());
+			statement.setString(2, alumno.getApellidos());
+			statement.setString(3, alumno.getDNI());
+			statement.setString(4, alumno.getContrasenha());
+			statement.setString(5, alumno.getTelefono());
+			statement.setString(6, alumno.getIdCorreo());
 			int rowsUpdated = statement.executeUpdate();
 			success = rowsUpdated > 0 ? 0x0 : 0x1;
 			statement.close();
