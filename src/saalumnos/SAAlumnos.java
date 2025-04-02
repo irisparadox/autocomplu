@@ -3,12 +3,12 @@ package saalumnos;
 import java.util.Date;
 import java.util.List;
 
-import DAOAlumnos.FDAOAlumnos;
-import Dominio.Alumno;
+import daoalumnos.*;
+import dominio.Alumno;
 
 public class SAAlumnos implements ISAAlumnos{
 	
-	private final FDAOAlumnos daoAlumnos = new FDAOAlumnos();
+	private final IFDAOAlumnos daoAlumnos = new FDAOAlumnos();
 
 	@Override
 	public Alumno consultarAlumno(String idCorreo) {

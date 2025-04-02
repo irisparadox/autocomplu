@@ -6,7 +6,7 @@ import java.util.List;
 import dominio.Alumno;
 
 public class FDAOAlumnos implements IFDAOAlumnos {
-	private IDAOAlumnos daoAlumnos;
+	private IDAOAlumnos daoAlumnos = new DAOAlumnos();
 	
 	@Override
 	public Alumno consultarAlumno(String idCorreo) {

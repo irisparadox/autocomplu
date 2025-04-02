@@ -3,7 +3,7 @@ package saalumnos;
 import java.util.List;
 import java.util.Date;
 
-import Dominio.Alumno;
+import dominio.Alumno;
 
 public interface IFSAAlumnos {
 	public Alumno consultarAlumno(String idCorreo);

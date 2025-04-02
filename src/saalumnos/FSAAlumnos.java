@@ -3,11 +3,11 @@ package saalumnos;
 import java.util.Date;
 import java.util.List;
 
-import Dominio.Alumno;
+import dominio.Alumno;
 
 public class FSAAlumnos implements IFSAAlumnos {
 	
-	private ISAAlumnos saAlumnos;
+	private ISAAlumnos saAlumnos = new SAAlumnos();
 	
 	@Override
 	public Alumno consultarAlumno(String idCorreo) {
