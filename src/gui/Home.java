@@ -40,6 +40,7 @@ public class Home extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        ErrorLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(17, 17, 34));
@@ -97,6 +98,11 @@ public class Home extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        
+        errorText = "";
+        ErrorLabel.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        ErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        ErrorLabel.setText(errorText);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +124,8 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton2))
+                	.addComponent(ErrorLabel))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,6 +147,8 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
+                .addGap(50, 50, 50)
+                .addComponent(ErrorLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -249,7 +258,8 @@ public class Home extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0) {
         	System.out.println("Credenciales vacias");
-        	//TODO mostrar error datos incorrectos
+        	errorText = "Debe rellenar los campos.";
+        	ErrorLabel.setText(errorText);
         	return;
         }
         
@@ -258,7 +268,8 @@ public class Home extends javax.swing.JFrame {
         
         if(a != null && a.getIdCorreo().equals("-1")) {
         	System.out.println("Error base datos");
-        	//TODO mostrar error base de datos
+        	errorText = "Error en base de datos.";
+        	ErrorLabel.setText(errorText);
         	return;
         }
         
@@ -269,10 +280,12 @@ public class Home extends javax.swing.JFrame {
         
         if(a != null) {
         	if(!(a.getContrasenha().equals(new String(jPasswordField1.getPassword())))) {
-        		System.out.println("Credenciales incorrectas");//TODO change view to non-admin
+        		System.out.println("Credenciales incorrectas");
+        		errorText = "Email o contraseña no correctos.";
+        		ErrorLabel.setText(errorText);
         		return;
         	}
-        	
+        	//TODO change view to non-admin
         	System.out.println("alumno correcto!");
         	return;
         }
@@ -284,7 +297,8 @@ public class Home extends javax.swing.JFrame {
         }*/
         
         System.out.println("Usuario no encontrado");
-        //TODO show error invalid credentials
+        errorText = "El usuario no existe.";
+		ErrorLabel.setText(errorText);
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -342,5 +356,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel ErrorLabel;
+    private String errorText;
     // End of variables declaration//GEN-END:variables
 }
