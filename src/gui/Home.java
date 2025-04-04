@@ -1,5 +1,7 @@
 package gui;
 
+import dominio.Alumno;
+import dominio.Profesor;
 import dominio.Usuario;
 import saalumnos.ControllerAlumnos;
 
@@ -90,6 +92,11 @@ public class Home extends javax.swing.JFrame {
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,17 +247,49 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Usuario u = cntrlAlumnos.consultarAlumno(jTextField1.getText());
-        if(u.getIdCorreo() == "-2") {
-        	System.out.println("Error en la base de datos");
-        } else if(u == null) {
-        	//TODO mostrar mensaje error usuario no existe
-        } else {
-        	if(u.getContrasenha() == new String(jPasswordField1.getPassword())) {
-        		this.setVisible(false);
-        	}
+        if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0) {
+        	System.out.println("Credenciales vacias");
+        	//TODO mostrar error datos incorrectos
+        	return;
         }
+        
+    	Alumno a = cntrlAlumnos.consultarAlumno(jTextField1.getText());
+        //TODO Profesor p = cntrlProfesores.consultarProfesor(jTextField1.getText());
+        
+        if(a != null && a.getIdCorreo().equals("-1")) {
+        	System.out.println("Error base datos");
+        	//TODO mostrar error base de datos
+        	return;
+        }
+        
+        /*if(p != null && p.getIdCorreo().equals("-1")) {
+        	//TODO mostrar error base de datos
+        	return;
+        }*/
+        
+        if(a != null) {
+        	if(!(a.getContrasenha().equals(new String(jPasswordField1.getPassword())))) {
+        		System.out.println("Credenciales incorrectas");//TODO change view to non-admin
+        		return;
+        	}
+        	
+        	System.out.println("alumno correcto!");
+        	return;
+        }
+        
+        /*if(p != null) {
+            if(p.getContrasenha().equals(jPasswordField1.getPassword()))
+        		;//TODO change view to admin
+        	return;
+        }*/
+        
+        System.out.println("Usuario no encontrado");
+        //TODO show error invalid credentials
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    	//TODO cambiar contraseña
+    }
 
     /**
      * @param args the command line arguments

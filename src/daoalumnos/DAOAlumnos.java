@@ -6,14 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 import dominio.Alumno;
+import dominio.Main;
 
 public class DAOAlumnos implements IDAOAlumnos {
 
 	public Alumno consultarAlumno(String idCorreo) {
 		Alumno alumno = null;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "SELECT * FROM alumnos WHERE idCorreo = ?";
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			String query = "SELECT * FROM vistaAlumnos WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
 			ResultSet table = statement.executeQuery();
@@ -34,7 +35,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 			connection.close();
 		} catch (SQLException e) {
 			alumno = new Alumno();
-			alumno.setIdCorreo("-2");
+			alumno.setIdCorreo("-1");
 		}
 		return alumno;
 	}
@@ -42,8 +43,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public List<Alumno> consultarAlumnos(String nombre, String apellidos) {
 		ArrayList<Alumno> list;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "SELECT * FROM alumnos WHERE nombre = ? AND apellidos = ?";
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			String query = "SELECT * FROM vistaAlumnos WHERE nombre = ? AND apellidos = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, nombre);
 			statement.setString(2, apellidos);
@@ -74,8 +75,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int crearAlumno(Alumno nuevoAlumno) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "INSERT INTO alumnos VALUES(?, ?, ?, ?, ?, ?)";
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			String query = "INSERT INTO usuarios VALUES(?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, nuevoAlumno.getIdCorreo());
 			statement.setString(2, nuevoAlumno.getNombre());
@@ -83,8 +84,13 @@ public class DAOAlumnos implements IDAOAlumnos {
 			statement.setString(4, nuevoAlumno.getTelefono());
 			statement.setString(5, nuevoAlumno.getContrasenha());
 			statement.setString(6, nuevoAlumno.getDNI());
-			int rowsUpdated = statement.executeUpdate();
-			success = rowsUpdated > 0 ? 0x0 : 0x1;
+			int rowsUpdatedU = statement.executeUpdate();
+			query = "INSERT INTO alumnos VALUES(?, ?)";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, nuevoAlumno.getIdCorreo());
+			statement.setInt(2, nuevoAlumno.getNumClasesPendientes());
+			int rowsUpdatedA = statement.executeUpdate();
+			success = rowsUpdatedU > 0 && rowsUpdatedA > 0 ? 0x0 : 0x1;
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -96,8 +102,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int borrarAlumno(String idCorreo) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "DELETE FROM alumnos WHERE idCorreo = ?";
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			String query = "DELETE FROM usuarios WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
 			
@@ -115,8 +121,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int existeAlumno(String idCorreo) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "SELECT COUNT(idCorreo) FROM alumnos WHERE idCorreo = ?";
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			String query = "SELECT COUNT(idCorreo) FROM vistaAlumnos WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
 			ResultSet table = statement.executeQuery();
@@ -134,8 +140,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int editarAlumno(Alumno alumno) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
-			String query = "UPDATE alumnos SET nombre = ?, apellidos = ?, DNI = ?, contrasenha = ?, telefono = ? WHERE idCorreo = ?";
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			String query = "UPDATE usuarios SET nombre = ?, apellidos = ?, DNI = ?, contrasenha = ?, telefono = ? WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, alumno.getNombre());
 			statement.setString(2, alumno.getApellidos());
@@ -143,8 +149,13 @@ public class DAOAlumnos implements IDAOAlumnos {
 			statement.setString(4, alumno.getContrasenha());
 			statement.setString(5, alumno.getTelefono());
 			statement.setString(6, alumno.getIdCorreo());
-			int rowsUpdated = statement.executeUpdate();
-			success = rowsUpdated > 0 ? 0x0 : 0x1;
+			int rowsUpdatedU = statement.executeUpdate();
+			query = "UPDATE alumnos SET numClasesPendientes = ? WHERE idCorreo = ?";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, alumno.getNumClasesPendientes());
+			statement.setString(2, alumno.getIdCorreo());
+			int rowsUpdatedA = statement.executeUpdate();
+			success = rowsUpdatedU > 0 && rowsUpdatedA > 0 ? 0x0 : 0x1;
 			statement.close();
 			connection.close();
 		} catch (SQLException e) {
@@ -156,7 +167,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int consultarHorario(String idCorreo, Date horario) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection("TODO-URL", "root", "1234");
+			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
 			String query = "SELECT horario FROM clases WHERE idCorreoAlumno = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
