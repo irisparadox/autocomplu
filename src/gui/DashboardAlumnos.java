@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 
 import dominio.*;
+import saalumnos.ControllerAlumnos;
 
 /**
  *
@@ -18,11 +19,13 @@ public class DashboardAlumnos extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
     private Alumno alumno;
+    private ControllerAlumnos cntrlAlumnos;
 	/**
      * Creates new form DashboardAlumnos
      */
-    public DashboardAlumnos(Alumno a) {
+    public DashboardAlumnos(Alumno a, ControllerAlumnos cntrlAlumnos) {
     	alumno = a;
+    	this.cntrlAlumnos = cntrlAlumnos;
         initComponents();
         
         addWindowListener(new WindowAdapter() {
@@ -185,35 +188,35 @@ public class DashboardAlumnos extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(59, 57, 75));
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Apellidos: " + alumno.getApellidos());
         jLabel2.setMinimumSize(new java.awt.Dimension(285, 26));
         jLabel2.setMaximumSize(new java.awt.Dimension(285, 26));
         jLabel2.setPreferredSize(new java.awt.Dimension(285, 26));
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Nombre: " + alumno.getNombre());
         jLabel3.setMinimumSize(new java.awt.Dimension(285, 26));
         jLabel3.setMaximumSize(new java.awt.Dimension(285, 26));
         jLabel3.setPreferredSize(new java.awt.Dimension(285, 26));
 
-        jLabel8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Correo: " + alumno.getIdCorreo());
         jLabel8.setMinimumSize(new java.awt.Dimension(285, 26));
         jLabel8.setMaximumSize(new java.awt.Dimension(285, 26));
         jLabel8.setPreferredSize(new java.awt.Dimension(285, 26));
 
-        jLabel9.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("DNI: " + alumno.getDNI());
         jLabel9.setMinimumSize(new java.awt.Dimension(285, 26));
         jLabel9.setMaximumSize(new java.awt.Dimension(285, 26));
         jLabel9.setPreferredSize(new java.awt.Dimension(285, 26));
 
-        jLabel10.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Teléfono: " + alumno.getTelefono());
         jLabel10.setMinimumSize(new java.awt.Dimension(285, 26));

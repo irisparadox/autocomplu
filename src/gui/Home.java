@@ -91,7 +91,7 @@ public class Home extends javax.swing.JFrame {
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -255,7 +255,6 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(jTextField1.getText().isEmpty() || jPasswordField1.getPassword().length == 0) {
-        	System.out.println("Credenciales vacias");
         	errorText = "Debe rellenar los campos.";
         	ErrorLabel.setText(errorText);
         	return;
@@ -265,7 +264,6 @@ public class Home extends javax.swing.JFrame {
         //TODO Profesor p = cntrlProfesores.consultarProfesor(jTextField1.getText());
         
         if(a != null && a.getIdCorreo().equals("-1")) {
-        	System.out.println("Error base datos");
         	errorText = "Error en base de datos.";
         	ErrorLabel.setText(errorText);
         	return;
@@ -278,16 +276,14 @@ public class Home extends javax.swing.JFrame {
         
         if(a != null) {
         	if(!(a.getContrasenha().equals(new String(jPasswordField1.getPassword())))) {
-        		System.out.println("Credenciales incorrectas");
         		errorText = "Email o contraseña no correctos.";
         		ErrorLabel.setText(errorText);
         		return;
         	}
         	//TODO change view to non-admin
-        	dashboardAlumnos = new DashboardAlumnos(a);
+        	dashboardAlumnos = new DashboardAlumnos(a, cntrlAlumnos);
         	dashboardAlumnos.setVisible(true);
         	this.dispose();
-        	System.out.println("alumno correcto!");
         	return;
         }
         
@@ -297,13 +293,12 @@ public class Home extends javax.swing.JFrame {
         	return;
         }*/
         
-        System.out.println("Usuario no encontrado");
         errorText = "El usuario no existe.";
 		ErrorLabel.setText(errorText);
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-    	//TODO cambiar contraseña
+    	new RecuperarPasswordDialog(this, true, cntrlAlumnos).setVisible(true);
     }
 
     /**

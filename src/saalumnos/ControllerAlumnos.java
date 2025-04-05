@@ -7,4 +7,9 @@ public class ControllerAlumnos {
 	public Alumno consultarAlumno(String idCorreo) {
 		return saAlumnos.consultarAlumno(idCorreo);
 	}
+	
+	public int editarContrasenha(Alumno alumno, String contrasenhaNueva) {
+		alumno.setContrasenha(contrasenhaNueva);
+		return saAlumnos.editarAlumno(alumno);
+	}
 }
