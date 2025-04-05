@@ -7,18 +7,15 @@ public class Usuario {
 	private String telefono;
 	private String contrasenha;
 	private String dni;
-	private boolean admin;
 	
 	public Usuario() { super(); }
-	public Usuario(String idCorreo, String nombre, String apellidos, String telefono, String contrasenha, String dni,
-			boolean admin) {
+	public Usuario(String idCorreo, String nombre, String apellidos, String telefono, String contrasenha, String dni) {
 		this.idCorreo = idCorreo;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.telefono = telefono;
 		this.contrasenha = contrasenha;
 		this.dni = dni;
-		this.admin = admin;
 	}
 	public String getIdCorreo() {
 		return idCorreo;
@@ -56,12 +53,4 @@ public class Usuario {
 	public void setDNI(String dni) {
 		this.dni = dni;
 	}
-	public boolean isAdmin() {
-		return admin;
-	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
-	
-	
 }
