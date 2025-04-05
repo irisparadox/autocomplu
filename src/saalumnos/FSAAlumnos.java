@@ -1,6 +1,5 @@
 package saalumnos;
 
-import java.util.Date;
 import java.util.List;
 
 import dominio.Alumno;
@@ -37,10 +36,5 @@ public class FSAAlumnos implements IFSAAlumnos {
 	@Override
 	public int editarAlumno(Alumno alumno) {
 		return saAlumnos.editarAlumno(alumno);
-	}
-
-	@Override
-	public int consultarHorario(String idCorreo, Date horario) {
-		return saAlumnos.consultarHorario(idCorreo, horario);
 	}
 }

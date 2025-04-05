@@ -1,6 +1,5 @@
 package saalumnos;
 
-import java.util.Date;
 import java.util.List;
 
 import daoalumnos.*;
@@ -48,13 +47,4 @@ public class SAAlumnos implements ISAAlumnos{
 		}
 		return daoAlumnos.editarAlumno(alumno);
 	}
-
-	@Override
-	public int consultarHorario(String idCorreo, Date horario) {
-		if (daoAlumnos.existeAlumno(idCorreo) == 0x1) {
-			return 0x1;
-		}
-		return daoAlumnos.consultarHorario(idCorreo, horario);
-	}
-
 }

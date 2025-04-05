@@ -1,7 +1,6 @@
 package saalumnos;
 
 import java.util.List;
-import java.util.Date;
 
 import dominio.Alumno;
 
@@ -12,5 +11,4 @@ public interface IFSAAlumnos {
 	public int borrarAlumno(String idCorreo);
 	public int existeAlumno(String idCorreo);
 	public int editarAlumno(Alumno alumno);
-	public int consultarHorario(String idCorreo, Date horario);
 }
