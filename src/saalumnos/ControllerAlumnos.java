@@ -12,4 +12,9 @@ public class ControllerAlumnos {
 		alumno.setContrasenha(contrasenhaNueva);
 		return saAlumnos.editarAlumno(alumno);
 	}
+	
+	public int comprarClases(Alumno alumno) {
+		alumno.setNumClasesPendientes(alumno.getNumClasesPendientes() + 10);
+		return saAlumnos.editarAlumno(alumno);
+	}
 }

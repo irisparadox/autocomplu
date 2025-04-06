@@ -104,6 +104,10 @@ public class DashboardAlumnos extends javax.swing.JFrame {
         comprarClasesButton.setToolTipText("Comprar más clases");
         comprarClasesButton.setContentAreaFilled(false);
         comprarClasesButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comprarClasesButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+        	new ComprarClasesDialog(this, true, this.cntrlAlumnos, this.alumno).setVisible(true);
+        	nClasesPendientes.setText(Integer.toString(alumno.getNumClasesPendientes()));
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

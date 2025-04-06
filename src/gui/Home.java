@@ -281,8 +281,7 @@ public class Home extends javax.swing.JFrame {
         		return;
         	}
         	//TODO change view to non-admin
-        	dashboardAlumnos = new DashboardAlumnos(a, cntrlAlumnos);
-        	dashboardAlumnos.setVisible(true);
+        	new DashboardAlumnos(a, cntrlAlumnos).setVisible(true);
         	this.dispose();
         	return;
         }
@@ -354,6 +353,5 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel ErrorLabel;
     private String errorText;
-    private DashboardAlumnos dashboardAlumnos;
     // End of variables declaration//GEN-END:variables
 }
