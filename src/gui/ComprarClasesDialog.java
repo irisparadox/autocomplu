@@ -24,6 +24,7 @@ public class ComprarClasesDialog extends javax.swing.JDialog {
         this.cntrlAlumnos = cntrl;
         this.a = a;
         initComponents();
+        setLocationRelativeTo(parent);
     }
 
     /**
@@ -70,11 +71,12 @@ public class ComprarClasesDialog extends javax.swing.JDialog {
         jLabel6.setForeground(new java.awt.Color(180, 180, 255));
         jLabel6.setText("4utoComplu.");
 
-        jButton1.setBackground(new java.awt.Color(180, 180, 255));
+        jButton1.setBackground(new java.awt.Color(110, 110, 195));
         jButton1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("COMPRAR");
         jButton1.setBorder(null);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

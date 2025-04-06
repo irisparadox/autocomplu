@@ -68,6 +68,7 @@ public class RecuperarPasswordDialog extends javax.swing.JDialog {
 
         okButton.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         okButton.setText("OK");
+        okButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         okButton.setFocusPainted(false);
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

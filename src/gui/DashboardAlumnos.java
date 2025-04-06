@@ -34,6 +34,7 @@ public class DashboardAlumnos extends javax.swing.JFrame {
                 new Home().setVisible(true);
             }
         });
+        setLocationRelativeTo(null);
     }
 
     /**
