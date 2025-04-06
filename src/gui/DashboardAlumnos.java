@@ -232,6 +232,10 @@ public class DashboardAlumnos extends javax.swing.JFrame {
         editarPefilButton.setToolTipText("Editar perfil");
         editarPefilButton.setContentAreaFilled(false);
         editarPefilButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        editarPefilButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+        	new EditarPerfilAlumnoDialog(this, true, cntrlAlumnos, alumno).setVisible(true);
+        	jLabel10.setText("Teléfono: " + alumno.getTelefono());
+        });
 
         jLabel11.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));

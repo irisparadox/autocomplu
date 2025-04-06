@@ -17,4 +17,10 @@ public class ControllerAlumnos {
 		alumno.setNumClasesPendientes(alumno.getNumClasesPendientes() + 10);
 		return saAlumnos.editarAlumno(alumno);
 	}
+	
+	public int editarPerfilNoAdmin(Alumno alumno, String nuevoTlf, String nuevaContra) {
+		alumno.setTelefono(nuevoTlf);
+		alumno.setContrasenha(nuevaContra);
+		return saAlumnos.editarAlumno(alumno);
+	}
 }
