@@ -49,7 +49,7 @@ public class ComprarClasesDialog extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(2, 0, 4));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/iris/NetBeansProjects/gui/resources/buy-128.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("resources/buy-128.png")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
