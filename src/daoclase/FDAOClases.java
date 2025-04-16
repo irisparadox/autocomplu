@@ -54,4 +54,14 @@ public class FDAOClases implements IFDAOClases {
 	public int eliminarClase(String idClase) {
 		return daoClases.eliminarClase(idClase);
 	}
+
+	@Override
+	public int hayClaseAlumnoHora(String idAlumno, java.sql.Date fecha) {
+		return daoClases.hayClaseAlumnoHora(idAlumno, fecha);
+	}
+
+	@Override
+	public int hayClaseProfesorHora(String idProfesor, java.sql.Date fecha) {
+		return daoClases.hayClaseAlumnoHora(idProfesor, fecha);
+	}
 }
