@@ -14,7 +14,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public Alumno consultarAlumno(String idCorreo) {
 		Alumno alumno = null;
 		try {
-			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, 
+					DatabaseConfig.DB_PASSWORD);
 			String query = "SELECT * FROM vistaAlumnos WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
