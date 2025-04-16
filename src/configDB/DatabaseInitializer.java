@@ -44,9 +44,9 @@ public class DatabaseInitializer {
             stmt.execute("CREATE TABLE IF NOT EXISTS clases ("
                     + "idClase INT AUTO_INCREMENT PRIMARY KEY,"
                     + "idCorreoAlumno VARCHAR(100),"
-                    + "idCorreoProfesor VARCHAR(100)"
+                    + "idCorreoProfesor VARCHAR(100),"
                     + "horario DATE,"
-                    + "FOREIGN KEY (idCorreoAlumno) REFERENCES alumnos(idCorreo)"
+                    + "FOREIGN KEY (idCorreoAlumno) REFERENCES alumnos(idCorreo),"
                     + "FOREIGN KEY (idCorreoProfesor) REFERENCES profesores(idCorreo)"
                     + ")");
 
