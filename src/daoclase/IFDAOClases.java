@@ -1,5 +1,6 @@
 package daoclase;
 
+import java.sql.Date;
 import java.util.List;
 
 import dominio.Clase;
@@ -14,4 +15,6 @@ public interface IFDAOClases {
 	public int eliminarClase(String idClase);
 	public int hayAlumno(String idClase);
 	public int hayProfesor(String idClase);
+	public int hayClaseAlumnoHora(String idAlumno,Date fecha);
+	public int hayClaseProfesorHora(String idProfesor,Date fecha); 
 }
