@@ -1,5 +1,6 @@
 package saprofesores;
 
-public interface ISAProfesores {
+public interface ISAProfesores extends IFSAProfesores {
+
 
 }
