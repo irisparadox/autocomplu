@@ -1,5 +1,7 @@
 package daoclase;
 
-public interface IDAOClases {
+import daoclase.IFDAOClases;
+
+public interface IDAOClases extends IFDAOClases{
 
 }

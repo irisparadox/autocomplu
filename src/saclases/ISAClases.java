@@ -1,5 +1,7 @@
 package saclases;
 
-public interface ISAClases {
+
+public interface ISAClases extends IFSAClases {
 
 }
+

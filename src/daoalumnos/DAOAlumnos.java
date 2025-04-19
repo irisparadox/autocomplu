@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import dominio.Alumno;
+import configDB.DatabaseConfig;
 import dominio.Main;
 
 public class DAOAlumnos implements IDAOAlumnos {
@@ -13,7 +14,8 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public Alumno consultarAlumno(String idCorreo) {
 		Alumno alumno = null;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, 
+					DatabaseConfig.DB_PASSWORD);
 			String query = "SELECT * FROM vistaAlumnos WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
@@ -43,7 +45,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public List<Alumno> consultarAlumnos(String nombre, String apellidos) {
 		ArrayList<Alumno> list;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
 			String query = "SELECT * FROM vistaAlumnos WHERE nombre = ? AND apellidos = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, nombre);
@@ -75,7 +77,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int crearAlumno(Alumno nuevoAlumno) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
 			String query = "INSERT INTO usuarios VALUES(?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, nuevoAlumno.getIdCorreo());
@@ -102,7 +104,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int borrarAlumno(String idCorreo) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
 			String query = "DELETE FROM usuarios WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
@@ -121,7 +123,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int existeAlumno(String idCorreo) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
 			String query = "SELECT COUNT(idCorreo) FROM vistaAlumnos WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
@@ -140,7 +142,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int editarAlumno(Alumno alumno) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
 			String query = "UPDATE usuarios SET nombre = ?, apellidos = ?, DNI = ?, contrasenha = ?, telefono = ? WHERE idCorreo = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, alumno.getNombre());
@@ -167,7 +169,7 @@ public class DAOAlumnos implements IDAOAlumnos {
 	public int consultarHorario(String idCorreo, Date horario) {
 		int success;
 		try {
-			Connection connection = DriverManager.getConnection(Main.DB_URL, Main.DB_USR, Main.DB_PSW);
+			Connection connection = DriverManager.getConnection(DatabaseConfig.DB_URL, DatabaseConfig.DB_USER, DatabaseConfig.DB_PASSWORD);
 			String query = "SELECT horario FROM clases WHERE idCorreoAlumno = ?";
 			PreparedStatement statement = connection.prepareStatement(query);
 			statement.setString(1, idCorreo);
